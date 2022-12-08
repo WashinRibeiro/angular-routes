@@ -1,20 +1,28 @@
 # Trabalhando com Rotas no Angular
 
-Links úteis:
+### Links úteis:
 - https://balta.io/blog/angular-rotas-guardas-navegacao
 - https://medium.com/angularbr/angular-5-trabalhando-com-rotas-8335617fcdbc
 
 ---
 
-A diferença entre href e routerLink
- - O href, recarrega para a tela que desejamos ir, ou seja, toda vez carregar o projeto
- - o routerLink já faz essa alteração de componentes dinamicamente sem precisar recarregar todo o projeto. Trazendo assim, a cacaracterística da SPA (Single-page application) 
+### A diferença entre href e routerLink
+
+- O <strong>href</strong> é o atributo de marca de âncora html para navegar para outra página. Nesse caso, uma nova página será carregada.
+
+- O <strong>routerLink</strong> é usado para obter a mesma funcionalidade, mas o Angular é responsável por criar aplicações SPA's (Single-page application), ou seja, aplicativos de página única, onde a página não deve ser recarregada. RouterLink navega para uma nova url e o componente é renderizado no lugar de router-outlet sem recarregar a página.
+
+---
+
+### Funcões do routerLink
 
 [routerLink] - Informamos a rota que queremos ir ao dar o click
 [routerLinkActive] - Informamos uma ou mais classes que queremos aplicar quando a rota for ativada
 [routerLinkActiveOptions] - Informamos que só queremos que a ativação da classe funciona quando aquela configuração for exatamente igual
 
 ---
+
+### Recuperando informações dos parâmetros
 
 Para recuperar informações dos parâmetros (parâmetros conhecidos no app-routing), 
 utilizamos a ActivatedRoute da seguinte forma:
@@ -31,6 +39,9 @@ exemplo: http://localhost:4200/portfolio/1
 
 ---
 
+
+### Recuperando informações dos query parâmetros
+
 Para recuperar informações dos queryParams (informações que vem no link, mas não são conhecidos), utilizamos a ActivatedRoute da seguinte forma:
 exemplo.: http://localhost:4200/portfolio/1/?name=felipe&token=123
 
@@ -45,6 +56,8 @@ constructor(private activeRoute: ActivatedRoute) {
 ```
 
 ---
+
+### Redirecionando para outra rota pelo typescript
 
 Mais uma funcionalidade que podemos aplicar no nosso sistema é o redirecionamento (navegação) para outra tela no próprio typescript do component. Para isso, precisamos importar o Router do '@angular/router' e colocar no constructor:
 
@@ -69,6 +82,8 @@ navigate() {
 ```
 
 ---
+
+### Rotas filhas (children)
 
 Por fim, podemos ter as rotas children, ou seja, as rotas filhas.
 Basicamente elas "herdam" os caminhos iniciais dos seus pais e com isso podemos passá-las como um complemente,
