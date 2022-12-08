@@ -1,0 +1,28 @@
+<!-- [routerLink] - Informamos a rota que queremos ir ao dar o click -->
+<!-- [routerLinkActive] - Informamos uma ou mais classes que queremos aplicar quando a rota for ativada -->
+<!-- [routerLinkActiveOptions] - Informamos que só queremos que a ativação da classe funciona
+     quando aquela configuração for exatamente igual -->
+
+<div>
+    <ul>
+        <li>
+            <a
+                [routerLink]="['/']"
+                [routerLinkActive]="['activated']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >
+                HOME
+            </a>
+        </li>
+
+        <li>
+            <a
+                [routerLink]="['/portfolio']"
+                [routerLinkActive]="['activated']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >
+                PORTFOLIO
+            </a>
+        </li>
+    </ul>
+</div>
