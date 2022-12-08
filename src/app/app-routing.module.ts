@@ -5,7 +5,9 @@ import { CardComponent } from './pages/portifolio/card/card.component';
 
 const routes: Routes = [
   { path: '', component: TitleComponent, pathMatch:'full'}, // Rota principal
-  { path: 'portfolio/:id', component: CardComponent},
+  { path: 'portfolio', component: CardComponent, children: [
+    { path: ':id', component: CardComponent },
+  ]},
   { path: '**', redirectTo: ''} // Rota coringa, geralmente voltando para a principal ou então 404
 ];
 

@@ -24,6 +24,7 @@ exemplo: http://localhost:4200/portfolio/1
   constructor(private activeRoute: ActivatedRoute) {
     this.activeRoute.params.subscribe((res: any) => {
       console.log(res);
+        ...
     })
   }
   ```
@@ -34,7 +35,62 @@ Para recuperar informações dos queryParams (informações que vem no link, mas
 exemplo.: http://localhost:4200/portfolio/1/?name=felipe&token=123
 
 ```
+
+constructor(private activeRoute: ActivatedRoute) {
     this.activeRoute.queryParams.subscribe((res: any) => {
-      console.log('queryParams:', res);
+        console.log('queryParams:', res);
+        ...
     })
+  }
 ```
+
+---
+
+Mais uma funcionalidade que podemos aplicar no nosso sistema é o redirecionamento (navegação) para outra tela no próprio typescript do component. Para isso, precisamos importar o Router do '@angular/router' e colocar no constructor:
+
+```
+constructor(private navigate: Router) {}
+```
+
+Com isso, conseguimos no momento da inicialização do componente, ou então ao chamar alguma função, redirecionar para outra rota, da seguinte forma, por exemplo:
+
+```
+ngOnInit(): void {
+    setInterval(() => {
+      this.navigate.navigate(['/']);
+    }, 5000)
+}
+```
+ou
+```
+navigate() {
+    this.navigate.navigate(['/']);
+}
+```
+
+---
+
+Por fim, podemos ter as rotas children, ou seja, as rotas filhas.
+Basicamente elas "herdam" os caminhos iniciais dos seus pais e com isso podemos passá-las como um complemente,
+dependendo do nosso objetivo.
+
+```
+// portfolio
+// portfolio/id
+// portfolio/id/token
+
+{ path: 'portfolio', component: CardComponent, children: [
+    { path: ':id', component: CardComponent },
+    { path: ':id/:token', component: CardComponent },
+  ]},
+```
+
+Para conseguirmos pegar os parâmetros das rotas filhas, podemos utilizar o firstChild do ActivatedRoute, como abaixo:
+
+```
+this.activeRoute.firstChild?.params.subscribe((res: any) => {
+  console.log('params filhos:', res);
+})
+
+```
+---
